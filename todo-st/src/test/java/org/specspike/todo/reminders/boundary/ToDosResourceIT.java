@@ -12,8 +12,8 @@ import javax.ws.rs.core.Response;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.internal.matchers.IsCollectionContaining.hasItem;
@@ -57,11 +57,11 @@ public class ToDosResourceIT {
                 request().
                 accept(MediaType.APPLICATION_JSON).
                 get(JsonObject.class);
+        System.out.println("foundReminder = " + foundReminder);
         assertNotNull(foundReminder);
         assertThat(foundReminder.getString("description"), is(description));
         assertNotNull(foundReminder.getString("createdBy"));
-        assertNull(foundReminder.getJsonString("changedBy"));
-        System.out.println("foundReminder = " + foundReminder);
+        assertTrue(foundReminder.isNull("changedBy") || foundReminder.get("changedBy") == null);
         //find all again
         //find all
         allReminders = this.tut.request().
