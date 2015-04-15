@@ -61,7 +61,7 @@ public class ToDosResourceIT {
         assertNotNull(foundReminder);
         assertThat(foundReminder.getString("description"), is(description));
         assertNotNull(foundReminder.getString("createdBy"));
-        assertTrue(foundReminder.isNull("changedBy") || foundReminder.get("changedBy") == null);
+        assertTrue(foundReminder.get("changedBy") == null || foundReminder.isNull("changedBy"));
         //find all again
         //find all
         allReminders = this.tut.request().
