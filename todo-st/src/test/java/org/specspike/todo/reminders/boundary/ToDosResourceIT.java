@@ -3,6 +3,7 @@ package org.specspike.todo.reminders.boundary;
 import javax.json.Json;
 import javax.json.JsonArray;
 import javax.json.JsonObject;
+import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Entity;
@@ -31,6 +32,16 @@ public class ToDosResourceIT {
     public void initClient() {
         this.client = ClientBuilder.newClient().register(new BasicAuthenticationFilter("duke", "chief"));
         this.tut = this.client.target("http://localhost:8080/todo/resources/todos");
+    }
+
+    @Test(expected = NotAuthorizedException.class)
+    public void unauthenticated() {
+        Client unauthenticated = ClientBuilder.newClient();
+        WebTarget unauthenticatedTarget = unauthenticated.target("http://localhost:8080/todo/resources/todos");
+        unauthenticatedTarget.request().
+                accept(MediaType.APPLICATION_JSON).
+                get(JsonArray.class);
+
     }
 
     @Test
