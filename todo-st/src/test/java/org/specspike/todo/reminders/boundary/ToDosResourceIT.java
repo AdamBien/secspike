@@ -29,7 +29,7 @@ public class ToDosResourceIT {
 
     @Before
     public void initClient() {
-        this.client = ClientBuilder.newClient();
+        this.client = ClientBuilder.newClient().register(new BasicAuthenticationFilter("duke", "chief"));
         this.tut = this.client.target("http://localhost:8080/todo/resources/todos");
     }
 
