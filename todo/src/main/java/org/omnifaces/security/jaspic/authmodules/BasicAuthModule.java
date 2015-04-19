@@ -12,7 +12,7 @@
  */
 package org.omnifaces.security.jaspic.authmodules;
 
-import org.omnifaces.security.glue.BasicAuthentication;
+import javax.annotation.security.BasicAuthentication;
 import javax.security.auth.message.AuthException;
 import javax.security.auth.message.AuthStatus;
 import javax.servlet.http.HttpServletRequest;

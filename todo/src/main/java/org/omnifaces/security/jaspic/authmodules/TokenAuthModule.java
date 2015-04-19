@@ -20,7 +20,7 @@ import javax.security.auth.message.AuthStatus;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import static org.omnifaces.security.cdi.Beans.getReferenceOrNull;
-import org.omnifaces.security.glue.TokenAuthentication;
+import javax.annotation.security.TokenAuthentication;
 import static org.omnifaces.security.jaspic.Utils.isEmpty;
 import org.omnifaces.security.jaspic.core.HttpMsgContext;
 import org.omnifaces.security.jaspic.core.HttpServerAuthModule;
